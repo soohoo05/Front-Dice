@@ -14,6 +14,15 @@ export default function Reducer ( state = store, action) {
       let copy=[...state.dice]
       copy.splice(index,1)
       return{...state,dice:copy}
+      case "CHANGE_DICE":
+      let changeDice=state.dice.find(dice => dice._id===action.payload.id)
+      let changeIndex =state.dice.indexOf(dice)
+      changeDice.roll=action.payload.roll
+      let changeCopy=[...state.dice]
+      changeCopy.splice(changeIndex,1,changeDice)
+      console.log(changeCopy)
+      return{...state,dice:copy}
+
     default:
       return state;
   }

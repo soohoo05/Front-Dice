@@ -9,7 +9,6 @@ class DiceContainer extends React.Component {
 
     dice=this.props.dice.map(dice=><Dice id={dice._id} roll={dice.roll} key={dice._id}/>)
   }
-  console.log(this.props.dice.length)
     return (
       <div>
         <p>Dice Count: {this.props.dice.length}</p>

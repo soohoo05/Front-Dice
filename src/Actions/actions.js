@@ -38,3 +38,17 @@ export const deleteDice = (id) => {
       });
   };
 };
+
+export const changeDice = (theRoll,theId) => {
+  let parsed= parseInt(theRoll)
+  return dispatch => {
+    return axios
+      .put(`http://localhost:3000/dice/${theId}/${parsed}`)
+      .then(json => {
+        dispatch({type:"CHANGE_DICE",payload:{id:theId,roll:parsed}})
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  };
+};
