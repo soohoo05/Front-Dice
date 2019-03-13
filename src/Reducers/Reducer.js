@@ -1,5 +1,6 @@
 let store = {
-  dice:[]
+  dice:[],
+  stats:{}
 }
 
 export default function Reducer ( state = store, action) {
@@ -16,13 +17,13 @@ export default function Reducer ( state = store, action) {
       return{...state,dice:copy}
       case "CHANGE_DICE":
       let changeDice=state.dice.find(dice => dice._id===action.payload.id)
-      let changeIndex =state.dice.indexOf(dice)
+      let changeIndex =state.dice.indexOf(changeDice)
       changeDice.roll=action.payload.roll
       let changeCopy=[...state.dice]
       changeCopy.splice(changeIndex,1,changeDice)
-      console.log(changeCopy)
-      return{...state,dice:copy}
-
+      return{...state,dice:changeCopy}
+      case "CHANGE_STATISTICS":
+      return {...state,stats:action.payload}
     default:
       return state;
   }

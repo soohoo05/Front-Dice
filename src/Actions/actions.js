@@ -26,6 +26,19 @@ export const getDice = () => {
   };
 };
 
+export const getStatistics = () => {
+  return dispatch => {
+    return axios
+      .get(`http://localhost:3000/dicestats`)
+      .then(json => {
+        dispatch({type:"CHANGE_STATISTICS",payload:json.data})
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  };
+};
+
 export const deleteDice = (id) => {
   return dispatch => {
     return axios
