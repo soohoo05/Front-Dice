@@ -6,11 +6,11 @@ import NavBar from './Components/NavBar'
 import { Switch, Route} from "react-router-dom";
 import { connect } from "react-redux";
 import {getDice, getStatistics} from './Actions/actions.js'
+import {withRouter, Link} from 'react-router-dom'
 
 class App extends Component {
   componentDidMount(){
     this.props.getDice()
-    this.props.getStatistics()
   }
   render() {
     return (
@@ -27,8 +27,7 @@ class App extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    getDice: () => dispatch(getDice()),
-    getStatistics: () => dispatch(getStatistics())
+    getDice: () => dispatch(getDice())
   }
 }
-export default connect(null,mapDispatchToProps)(App);
+export default withRouter(connect(null,mapDispatchToProps)(App));

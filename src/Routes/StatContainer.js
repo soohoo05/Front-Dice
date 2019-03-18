@@ -1,9 +1,25 @@
 import React from 'react';
 import { connect } from "react-redux";
+import axios from "axios";
 
 class Statcontainer extends React.Component {
+  state={
+    stats:[]
+  }
+  componentDidMount(){
+    axios
+      .get(`http://localhost:3000/dicestats`)
+      .then(json => {
+        this.setState({
+          stats:json.data
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  }
   render() {
-    let {stats}=this.props
+    let {stats}=this.state
     return (
       <div>
       <h1>Dice Count: {stats.total}</h1>
